@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Layout from './components/Layout'
 
 const products = [
   {
@@ -60,18 +61,32 @@ function ProductItem(props) {
   )
 }
 
+// function App() {
+//   return (
+//     <div className="products">
+//       {
+//         products.map(elm => {
+//           return <ProductItem data={elm} />
+//         })
+//       }
+//     </div>
+//   );
+// }
+
+
 function App() {
   return (
-    <div className="products">
-      {
-        products.map(elm => {
-          return <ProductItem data={elm} />
-        })
-      }
-    </div>
+    <Layout>
+      <div className="products">
+        {
+          products.map(elm => {
+            return <ProductItem data={elm} />
+          })
+        }
+      </div>
+    </Layout>
   );
 }
-
 
 
 export default App;
