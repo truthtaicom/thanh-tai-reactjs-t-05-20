@@ -38,11 +38,7 @@ function App() {
     <Layout>
       <Content>
         <ProductItem 
-          imageURL={products[0].imageURL}
-          type={products[0].type}
-          name={products[0].name}
-          price={products[0].price}
-          discountPrice={products[0].discountPrice}
+          {...products[0]}
         />
       </Content>
       <SideBar />
