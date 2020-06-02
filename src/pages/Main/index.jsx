@@ -34,6 +34,14 @@ function Main() {
     setProducts(newProductSort)
   }
 
+  const onSearch = (value) => {
+    const newProductSearch = [...dataProduct.data].filter(item => {
+      return item.name.includes(value)
+    })
+    console.log(newProductSearch)
+    setProducts(newProductSearch)
+  }
+
   return (
     <Layout productsInCart={productsInCart}>
       <main>
@@ -52,7 +60,7 @@ function Main() {
                 })
               }
             </Content>
-            <SideBar sortNameZA={sortNameZA} sortNameAZ={sortNameAZ}/>
+            <SideBar sortNameZA={sortNameZA} sortNameAZ={sortNameAZ} onSearch={onSearch}/>
             </div>
           </div>
         </section>
