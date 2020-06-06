@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../../components/Layout'
 import axios from 'axios'
-
+import { Link, useHistory } from 'react-router-dom'
 
 function Register() {
   const [userInfo, setUserInfo] = useState({
@@ -9,6 +9,9 @@ function Register() {
     fullName: "",
     password: ""
   })
+
+  const [errorMessage, setErrorMessage] = useState("")
+  const history = useHistory()
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -24,6 +27,7 @@ function Register() {
   }
 
   const register = async (data) => {
+    setErrorMessage('')
     try {
       const result = await axios({
         method: "POST",
@@ -33,8 +37,9 @@ function Register() {
   
       console.log(result.data);
       localStorage.setItem("token", result.data.accessToken)
+      history.push('/')
     } catch (error) {
-      console.log(error.message);
+      setErrorMessage(error.response.data.message)
     }
   }
   return (
@@ -64,6 +69,7 @@ function Register() {
               <div className="col-lg-8 offset-lg-2">
                 <div className="basic-login">
                   <h3 className="text-center mb-60">Signup From Here</h3>
+                  <p className="text-danger">{errorMessage}</p>
                   <form onSubmit={onSubmit}>
                     <label htmlFor="name">FullName <span>**</span></label>
                     <input name="fullName" id="name" type="text" placeholder="Enter your Full Name..." />
@@ -74,7 +80,7 @@ function Register() {
                     <div className="mt-10" />
                     <button className="btn theme-btn-2 w-100">Register Now</button>
                     <div className="or-divide"><span>or</span></div>
-                    <button className="btn theme-btn w-100">login Now</button>
+                    <Link to="/login" className="btn theme-btn w-100">login Now</Link>
                   </form>
                 </div>
               </div>
