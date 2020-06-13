@@ -1,10 +1,9 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import productsReducer from './pages/Main/Main.reducer'
 import productDetailReducer from './pages/ProductDetail/ProductDetail.reducer'
 import loginReducer from './pages/Login/Login.reducer'
 import registerReducer from './pages/Register/Register.reducer'
-import ReduxThunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension'
+// import ReduxThunk from 'redux-thunk';
 
 const store = createStore(
   combineReducers({
@@ -13,7 +12,8 @@ const store = createStore(
     loginReducer,
     registerReducer
   }),
-  applyMiddleware(composeWithDevTools(ReduxThunk)), 
+  {}, 
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 export default store
