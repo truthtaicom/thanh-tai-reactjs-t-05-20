@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import Layout from '../../components/Layout'
 import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { registerAction } from './Register.action'
 
-function Register() {
+function Register(props) {
   const [userInfo, setUserInfo] = useState({
     email: "",
     fullName: "",
@@ -28,15 +30,9 @@ function Register() {
 
   const register = async (data) => {
     setErrorMessage('')
+
     try {
-      const result = await axios({
-        method: "POST",
-        url: "https://min-shop.herokuapp.com/rest/user/signUp",
-        data
-      });
-  
-      console.log(result.data);
-      localStorage.setItem("token", result.data.accessToken)
+      await props.register(data)
       history.push('/')
     } catch (error) {
       setErrorMessage(error.response.data.message)
@@ -93,4 +89,14 @@ function Register() {
   )
 }
 
-export default Register
+const mapStateToProps = (state) => {
+  return {
+    loading: state.registerReducer.loading
+  }
+}
+
+const mapDispatchToProps = {
+  register: registerAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
