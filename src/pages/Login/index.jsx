@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Layout from '../../components/Layout'
 import { Link, useHistory } from 'react-router-dom'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { loginAction } from './Login.action'
 

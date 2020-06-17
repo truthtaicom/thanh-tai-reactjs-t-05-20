@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Layout from '../../components/Layout'
-import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { registerAction } from './Register.action'
@@ -68,11 +67,11 @@ function Register(props) {
                   <p className="text-danger">{errorMessage}</p>
                   <form onSubmit={onSubmit}>
                     <label htmlFor="name">FullName <span>**</span></label>
-                    <input name="fullName" id="name" type="text" placeholder="Enter your Full Name..." />
+                    <input onChange={onChange} name="fullName" id="name" type="text" placeholder="Enter your Full Name..." />
                     <label htmlFor="email-id">Email Address <span>**</span></label>
-                    <input name="email" id="email-id" type="text" placeholder="Enter Email address..." />
+                    <input onChange={onChange} name="email" id="email-id" type="text" placeholder="Enter Email address..." />
                     <label htmlFor="pass">Password <span>**</span></label>
-                    <input name="password" id="pass" type="password" placeholder="Enter password..." />
+                    <input onChange={onChange} name="password" id="pass" type="password" placeholder="Enter password..." />
                     <div className="mt-10" />
                     <button className="btn theme-btn-2 w-100">Register Now</button>
                     <div className="or-divide"><span>or</span></div>

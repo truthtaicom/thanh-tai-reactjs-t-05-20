@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Main.css";
 import Layout from "../../components/Layout";
 import Content from "../../components/Content";
@@ -6,8 +6,6 @@ import ProductItem from "../../components/ProductItem";
 import SideBar from "../../components/SideBar";
 import dataProduct from '../../product.json'
 import { useBgMode } from "../../hooks/useBgMode";
-import axios from 'axios'
-import store from "../../store";
 import { connect } from 'react-redux'
 import { getProductsAction } from './Main.action'
 
@@ -15,7 +13,6 @@ function Main(props) {
   const [products, setProducts] = useState([])
   const [productsInCart, setProductsInCart] = useState([])
   const [value, setValue] = useBgMode()
-  const { getProducts } = props;
 
 
   // store.subscribe(() => {
@@ -33,7 +30,7 @@ function Main(props) {
 
   useEffect(() => {
     props.getProducts()
-  }, [])
+  }, [props])
   
   const onSelectProduct = (propsOfProductItem) => {
     console.log(propsOfProductItem)
